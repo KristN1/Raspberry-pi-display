@@ -11,6 +11,7 @@ from lib.stoppablethread import StoppableThread
 app = Flask(__name__)
 port = 5000
 api_queue = Queue()
+autoscroll = Autoscroll()
 
 @app.route("/")
 def index():
@@ -41,8 +42,8 @@ def run():
 
         if action.action_type == "write":
             cleanup()
-            autoscroll.enable()
             scrollphathd.write_string(action.data)
+            autoscroll.enable()
 
         if action.action_type == "clear":
             cleanup()
@@ -52,8 +53,6 @@ def run():
 def start_background_thread():
     api_thread = StoppableThread(target=run)
     api_thread.start()
-
-autoscroll = Autoscroll()
 
 def main():
     start_background_thread()

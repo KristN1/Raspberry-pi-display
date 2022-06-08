@@ -2,20 +2,17 @@ import scrollphathd, threading
 
 class Autoscroll():
     def __init__(self):
-        self.enabled = False
-        self.run()
+        self.status = False
 
     def enable(self):
-        print("enabled autoscroll")
-        self.enabled = True
+        self.status = True
+        self.run()
 
     def disable(self):
-        print("disabled autoscroll")
-        self.enabled = False
+        self.status = False
     
     def run(self):
-        if self.enabled is True:
-            print("scrilling")
+        if self.status is True:
             threading.Timer(0.1, self.run).start()
             scrollphathd.scroll()
             scrollphathd.show()
