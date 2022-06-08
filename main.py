@@ -7,7 +7,6 @@ from lib.action import Action
 from lib.autoscroll import Autoscroll
 from lib.stoppablethread import StoppableThread
 
-
 app = Flask(__name__)
 port = 5000
 api_queue = Queue()
